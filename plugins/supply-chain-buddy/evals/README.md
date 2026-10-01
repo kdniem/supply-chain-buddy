@@ -43,7 +43,7 @@ claude plugin eval . ... --json results.json && python3 ../../tools/eval_table.p
 | sc-diagnostic-03-health-check | 1.00 | 0.00 |
 
 ### Default model (frontier)
-Run on the skill version just before the final guidance tweaks. A rerun on the final version was cut off by an account usage limit and is still open.
+Run on the final version, with the same result as the earlier run on the previous version.
 
 | Cases | With plugin | Without | Mean Δ |
 |---|---|---|---|
