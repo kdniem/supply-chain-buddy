@@ -1,3 +1,5 @@
+<!-- GENERATED from shared/data-intake.md by tools/sync_shared.py. Do not edit; edit shared/data-intake.md instead. -->
+
 # Data intake protocol
 
 How the Buddy asks for, receives and checks data. Each skill lists its specific needs in its *Data requirements* table. This protocol covers the common mechanics.

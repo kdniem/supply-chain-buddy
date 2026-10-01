@@ -2,7 +2,7 @@
 
 **An AI advisor and sparring partner for supply chain professionals.**
 
-> 🚧 Work in progress: Phase 1 (foundation) is in place. The first skills land in Phase 2. See the [roadmap](docs/roadmap.md).
+> 🚧 Work in progress: the first skill (`inventory-policy`) is available. More skills follow in Phase 2. See the [roadmap](docs/roadmap.md).
 
 Supply Chain Buddy turns Claude into a supply chain advisor. It does not answer from generic web knowledge. It works the way an experienced planner or consultant would:
 
@@ -15,15 +15,15 @@ Supply Chain Buddy turns Claude into a supply chain advisor. It does not answer 
 ## Who it is for
 Planners, buyers, analysts, supply chain managers and leaders, as well as students and researchers. It is designed for mid-sized to large organisations and is industry-agnostic.
 
-## Skills (MVP, in development)
-| Skill | What it helps with |
-|---|---|
-| `sc-buddy` | Entry point. Clarifies your question and routes it to the right specialist skill(s) |
-| `sc-diagnostic` | KPI trees, root-cause analysis, SCOR-based health checks |
-| `inventory-policy` | ABC/XYZ segmentation, safety stock, reorder points, service level targets |
-| `demand-planning-review` | Forecast method selection, accuracy and bias, forecast value added |
-| `s-and-op-design` | S&OP / IBP process design, maturity assessment, meeting cadence |
-| `sourcing-strategy` | Kraljic portfolio, supplier selection, total cost of ownership |
+## Skills
+| Skill | What it helps with | Status |
+|---|---|---|
+| `inventory-policy` | ABC/XYZ segmentation, service level targets, safety stock, reorder points, stock health | ✅ beta |
+| `sc-buddy` | Entry point. Clarifies your question and routes it to the right specialist skill(s) | 🔜 |
+| `sc-diagnostic` | KPI trees, root-cause analysis, SCOR-based health checks | 🔜 |
+| `demand-planning-review` | Forecast method selection, accuracy and bias, forecast value added | 🔜 |
+| `s-and-op-design` | S&OP / IBP process design, maturity assessment, meeting cadence | 🔜 |
+| `sourcing-strategy` | Kraljic portfolio, supplier selection, total cost of ownership | 🔜 |
 
 ## Install (Claude Code)
 ```bash
@@ -35,7 +35,10 @@ Then just ask, for example: *"Our fill rate dropped from 96% to 89% while invent
 Every skill folder is self-contained. You can also copy a single skill from `plugins/supply-chain-buddy/skills/` into your own skills directory.
 
 ## How quality is measured
-Each skill ships with evaluation cases for `claude plugin eval`. Every case runs **with and without** the plugin, so the value the skills add can be measured, not just claimed.
+Each skill ships with evaluation cases for `claude plugin eval`. Every case runs **with and without** the plugin, so the value the skills add can be measured, not just claimed. Latest results are in [evals/README.md](plugins/supply-chain-buddy/evals/README.md).
+
+## Demo data
+[Brightvale Industrial Supply](demos/brightvale/README.md) is a fictional distributor with 40 SKUs and 52 weeks of simulated demand, forecasts, supplier receipts and KPIs. Its fill rate drops while inventory rises, with root causes hidden in the data. Use it to try the skills.
 
 ## Contributing
 See [CLAUDE.md](CLAUDE.md) and the [skill authoring guide](docs/skill-authoring-guide.md).

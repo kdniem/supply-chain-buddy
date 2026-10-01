@@ -38,7 +38,7 @@ python3 tools/sync_shared.py            # copy shared/ into each skill's referen
 python3 tools/validate_repo.py          # structure, frontmatter, sync and length checks
 python3 -m unittest discover tests      # script tests
 claude plugin validate .                # marketplace + plugin manifest checks
-claude plugin eval plugins/supply-chain-buddy   # behavioural evals (costs model usage)
+(cd plugins/supply-chain-buddy && claude plugin eval . --scaffold --allow-tools Bash Write)   # behavioural evals (costs model usage)
 ```
 Run the first four before every commit.
 
