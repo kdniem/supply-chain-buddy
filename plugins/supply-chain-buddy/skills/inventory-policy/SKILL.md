@@ -23,7 +23,7 @@ Helps planners, inventory managers and supply chain leads decide **how much stoc
 ## Operating contract
 Follow `references/_shared/operating-principles.md` at all times. In addition:
 
-1. **Pin down the service metric first.** "Service level" can mean cycle service level (CSL) or fill rate (unit, line or order). Ask, or state your assumption. Never mix them in one table.
+1. **Pin down the service metric first.** "Service level" can mean cycle service level (CSL) or fill rate (unit, line or order). Ask, or state your assumption. Never mix them in one table. Never call one a proxy for the other: a 99% fill rate needs much less safety stock than a 99% CSL. Size fill-rate targets with the fill-rate method, or report the implied fill rate of a CSL target.
 2. **Segment before you parameterise.** Never recommend a single service target or a single "weeks of cover" rule for the whole assortment. Use ABC (value) × XYZ (variability) and the demand pattern at minimum.
 3. **Safety stock covers uncertainty, not average demand.** Size it for the protection interval: lead time plus review period. A "weeks of cover" rule is a heuristic and must be called one.
 4. **Use the right uncertainty measure.** If a forecast drives replenishment, the forecast error (RMSE at the replenishment lag) is the right σ. If not, use the demand standard deviation. Say which one you use.
@@ -47,7 +47,11 @@ Ask at most three questions per turn, in this order of importance:
 - Which decision is this for? For example: new parameters, a target-setting concept, explaining a KPI, or reducing working capital.
 - What is the scope? Number of SKUs, locations (single echelon or network), and whether replenishment is from a supplier or from production.
 - Which service metric is in use (CSL or fill rate, line or unit), and what is the current target?
-Restate the decision in one sentence before analysing.
+Restate the decision in one sentence before analysing. For a design question without data, the first reply must already contain:
+- the recommended approach (segmentation, differentiated targets, statistical sizing with the formula),
+- why the current rule fails,
+- a data request block (demand history, item master with unit cost, actual lead times),
+- and only then the open questions.
 
 ### 2. Intake
 - Determine the data tier (T0–T3, see `references/_shared/data-intake.md`) and state it.
@@ -148,6 +152,7 @@ To set targets by segment, add a `service_level` column to the parameter CSV bas
 ## Guardrails
 - Do not present normal-approximation results for intermittent or lumpy items as precise. Flag them and suggest an empirical or simulation check.
 - Do not recommend 99%+ service across the board, and do not accept "100% service" as a target. Explain the stock cost.
+- Do not promise savings ("cuts working capital by 10–15%") before you have calculated them on the user's data. Before that, describe the direction of the effect only.
 - Do not invent holding cost rates, stock-out costs or industry benchmarks. Ask for them, or use an explicit assumption (e.g. "holding cost 20%/year, rule of thumb") and show its effect.
 - Multi-echelon networks (central and regional warehouses) need more than single-location formulas. Say so, give the single-echelon view as a first approximation, and recommend a multi-echelon approach `[AXS-2015]`.
 - Perishables, shelf-life and regulated items (pharma, food) need extra constraints. Flag them and do not ignore expiry.

@@ -37,6 +37,7 @@ Column *Verified*: ✔ = bibliographic details checked by a maintainer; ○ = to
 | `[GAR-1985]` | Gardner, E.S. (1985). Exponential smoothing: The state of the art. *Journal of Forecasting*, 4(1), 1–28. | Exponential smoothing | ○ |
 | `[CRO-1972]` | Croston, J.D. (1972). Forecasting and stock control for intermittent demands. *Operational Research Quarterly*, 23(3), 289–303. | Intermittent demand forecasting | ○ |
 | `[SB-2005]` | Syntetos, A.A., Boylan, J.E., Croston, J.D. (2005). On the categorization of demand patterns. *Journal of the Operational Research Society*, 56(5), 495–503. | ADI/CV² demand classification | ○ |
+| `[SBA-2005]` | Syntetos, A.A., Boylan, J.E. (2005). The accuracy of intermittent demand estimates. *International Journal of Forecasting*, 21(2), 303–314. | SBA bias correction for Croston | ○ |
 | `[TSB-2011]` | Teunter, R.H., Syntetos, A.A., Babai, M.Z. (2011). Intermittent demand: Linking forecasting to inventory obsolescence. *European Journal of Operational Research*, 214(3), 606–615. | TSB method for intermittent/obsolescent items | ○ |
 | `[LPW-1997]` | Lee, H.L., Padmanabhan, V., Whang, S. (1997). Information distortion in a supply chain: The bullwhip effect. *Management Science*, 43(4), 546–558. | Bullwhip effect, causes and remedies | ○ |
 

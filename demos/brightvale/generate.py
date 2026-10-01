@@ -14,6 +14,8 @@ Hidden root causes (see ANSWER_KEY.md):
   3. Supplier SUP-05 raised minimum order quantities from week 20 on -> more cycle stock on C items.
   4. Hydraulics (HYDR): safety stock raised by ~2 weeks of demand from week 24 on for an anticipated
      customer project that never materialised -> expensive excess stock.
+  Forecasts: the final (consensus) forecast overrides the statistical one. PNEU stays locked to
+  the budget after the decline; HYDR gets a +35% sales uplift for the project from week 20 on.
   5. Safety stock is a flat "0.5 weeks of average demand" for every SKU -> too little for volatile
      A items, too much for stable or slow items; lumpy items are not treated differently.
 
@@ -39,6 +41,8 @@ PNEU_DECLINE = 0.70   # demand multiplier after decline
 SUP05_MOQ_WEEK = 20
 SUP05_MOQ_FACTOR = 3.0
 SS_WEEKS_OF_COVER = 0.5
+SALES_UPLIFT_WEEK = 20     # sales adds the expected project to the HYDR forecast
+SALES_UPLIFT = 1.35
 PROJECT_WEEK = 24          # anticipated project demand -> stock build on hydraulics
 PROJECT_WEEKS_OF_DEMAND = 2
 
@@ -124,6 +128,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
     demand_rows, forecast_rows, receipt_rows, param_rows, item_rows = [], [], [], [], []
+    fulfillment_rows, snapshot_rows = [], []
     weekly = defaultdict(lambda: {"demand": 0.0, "filled": 0.0, "lines": 0, "lines_full": 0, "inv_value": 0.0})
     po_counter = 1
 
@@ -158,10 +163,16 @@ def main() -> None:
             if d > 0:
                 agg["lines"] += 1
                 agg["lines_full"] += 1 if filled == d else 0
-            # forecast at lag 4: 8-week moving average of demand known 4 weeks earlier
+            # statistical forecast at lag 4: 8-week moving average of demand known 4 weeks earlier
             hist = demand[max(0, w - 12): max(0, w - 4)]
-            fc = (sum(hist) / len(hist)) if hist else mean
-            forecast_rows.append((sku, iso_label(w), round(fc, 1), 4))
+            stat = (sum(hist) / len(hist)) if hist else mean
+            # final (consensus) forecast: planners override the statistical forecast
+            final = stat
+            if cat == "PNEU" and w >= PNEU_DECLINE_WEEK:
+                final = mean                       # locked to the annual budget; decline not accepted
+            elif cat == "HYDR" and w >= SALES_UPLIFT_WEEK:
+                final = stat * SALES_UPLIFT        # sales expects the customer project
+            forecast_rows.append((sku, iso_label(w), round(stat, 1), round(final, 1), 4))
             # replenish (s, Q): order multiples of Q until position > ROP
             uplift = int(math.ceil(PROJECT_WEEKS_OF_DEMAND * mean)) if (cat == "HYDR" and w >= PROJECT_WEEK) else 0
             position = on_hand + sum(x[1] for x in pipeline)
@@ -178,6 +189,8 @@ def main() -> None:
                 position += q
             agg["inv_value"] += on_hand * cost
             demand_rows.append((sku, iso_label(w), d))
+            fulfillment_rows.append((sku, iso_label(w), d, filled))
+            snapshot_rows.append((sku, iso_label(w), on_hand, sum(x[1] for x in pipeline)))
 
         open_po_qty = sum(x[1] for x in pipeline)
         item_rows.append((sku, desc, cat, sup, f"{cost:.2f}"))
@@ -190,7 +203,7 @@ def main() -> None:
         w.writerows(demand_rows)
     with open(OUT / "forecast_history.csv", "w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["sku_id", "period", "forecast_qty", "forecast_lag_weeks"])
+        w.writerow(["sku_id", "period", "stat_forecast_qty", "forecast_qty", "forecast_lag_weeks"])
         w.writerows(forecast_rows)
     with open(OUT / "item_master.csv", "w", newline="") as fh:
         w = csv.writer(fh)
@@ -205,6 +218,15 @@ def main() -> None:
         w = csv.writer(fh)
         w.writerow(["po_id", "supplier_id", "sku_id", "order_date", "promised_date", "received_date", "qty"])
         w.writerows(receipt_rows)
+
+    with open(OUT / "order_fulfillment.csv", "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["sku_id", "period", "demand_qty", "shipped_qty"])
+        w.writerows(fulfillment_rows)
+    with open(OUT / "inventory_snapshots.csv", "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["sku_id", "period", "on_hand_qty", "on_order_qty"])
+        w.writerows(snapshot_rows)
 
     months = defaultdict(lambda: {"demand": 0.0, "filled": 0.0, "lines": 0, "lines_full": 0, "inv": [], })
     for wk in range(WEEKS):

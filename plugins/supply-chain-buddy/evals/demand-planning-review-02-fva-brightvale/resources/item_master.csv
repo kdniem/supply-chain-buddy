@@ -1,0 +1,41 @@
+sku_id,description,category,supplier_id,unit_cost
+BRG-6204,Deep groove ball bearing 6204-2RS,BEAR,SUP-03,4.80
+BRG-6305,Deep groove ball bearing 6305-2RS,BEAR,SUP-03,9.60
+BRG-UCP208,Pillow block bearing UCP208,BEAR,SUP-03,27.50
+SEAL-OR-50,O-ring kit NBR 50 pcs,SEAL,SUP-01,12.40
+SEAL-SH-40,Shaft seal 40x62x8,SEAL,SUP-03,6.90
+HYD-HOSE-12,Hydraulic hose 1/2in per 10m,HYDR,SUP-02,58.00
+HYD-FIT-08,Hydraulic fitting JIC 1/2in,HYDR,SUP-02,7.20
+HYD-PUMP-G2,Gear pump group 2,HYDR,SUP-02,410.00
+ELE-CONT-25,Contactor 25A 24VDC,ELEC,SUP-04,38.50
+ELE-PROX-M18,Inductive proximity sensor M18,ELEC,SUP-03,31.00
+ELE-RELAY-4,Plug-in relay 4CO,ELEC,SUP-04,8.90
+ELE-PSU-10,DIN rail power supply 24V 10A,ELEC,SUP-04,96.00
+PNEU-CYL-50,Pneumatic cylinder 50x200,PNEU,SUP-06,74.00
+PNEU-VAL-52,5/2 solenoid valve G1/4,PNEU,SUP-06,52.00
+PNEU-FRL-14,Filter regulator lubricator G1/4,PNEU,SUP-06,64.00
+PNEU-FIT-08,Push-in fitting 8mm,PNEU,SUP-06,1.90
+PNEU-TUBE-08,PU tubing 8mm per 50m,PNEU,SUP-06,29.00
+FAS-M8-25,Hex bolt M8x25 8.8 box 100,FAST,SUP-05,6.20
+FAS-M10-40,Hex bolt M10x40 8.8 box 50,FAST,SUP-05,7.80
+FAS-NUT-M8,Hex nut M8 box 200,FAST,SUP-05,4.10
+FAS-WSH-M10,Washer M10 box 200,FAST,SUP-05,3.20
+FAS-ANC-12,Heavy duty anchor M12,FAST,SUP-05,2.60
+SAF-GLV-L,Cut resistant gloves L (pair),SAFE,SUP-07,4.50
+SAF-GLS-CL,Safety glasses clear,SAFE,SUP-07,3.80
+SAF-EAR-200,Ear plugs box 200,SAFE,SUP-07,18.00
+SAF-HARN-1,Fall arrest harness,SAFE,SUP-07,89.00
+BRG-6206,Deep groove ball bearing 6206-2RS,BEAR,SUP-01,6.10
+BRG-NU210,Cylindrical roller bearing NU210,BEAR,SUP-01,64.00
+SEAL-GSK-DN50,Flange gasket DN50,SEAL,SUP-01,3.40
+SEAL-PACK-12,Gland packing 12mm per kg,SEAL,SUP-01,46.00
+HYD-CYL-63,Hydraulic cylinder 63x300,HYDR,SUP-02,380.00
+HYD-FILT-10,Return line filter element 10um,HYDR,SUP-02,24.00
+ELE-VFD-2K2,Frequency inverter 2.2kW,ELEC,SUP-04,520.00
+ELE-CBL-3G15,Control cable 3G1.5 per 100m,ELEC,SUP-04,71.00
+FAS-THR-M12,Threaded rod M12 1m,FAST,SUP-05,3.90
+FAS-CLIP-20,Spring clip 20mm box 100,FAST,SUP-05,5.50
+FAS-RIV-48,Blind rivet 4.8 box 500,FAST,SUP-05,14.00
+SAF-SIGN-EX,Emergency exit sign,SAFE,SUP-07,21.00
+PNEU-SIL-14,Pneumatic silencer G1/4,PNEU,SUP-06,2.40
+PNEU-GAUGE-63,Pressure gauge 63mm 0-10bar,PNEU,SUP-06,11.00

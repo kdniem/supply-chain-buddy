@@ -10,6 +10,11 @@ The simulation in `generate.py` builds in five root causes. A good diagnosis fin
 | 4 | **Hydraulics safety stock raised by about 2 weeks of demand** from about 2026-W13 for a customer project that never materialised | **Inventory up** on expensive HYDR items (pump, hose, cylinder) | `replenishment_params.csv`: HYDR `safety_stock_qty` is about 2.5 weeks of demand vs. 0.5 for all other SKUs. Demand did not rise accordingly |
 | 5 | **Flat safety stock rule:** 0.5 weeks of average demand for every SKU, regardless of variability, lead time or value | Structural: too little protection for volatile A items with longer lead times, the wrong buffer for lumpy C items, and no response to changed lead times | `safety_stock_qty / mean demand ≈ 0.5` for all non-HYDR SKUs. ABC/XYZ shows 10 lumpy SKUs treated like smooth ones |
 
+## Forecasting layer
+The final (consensus) forecast overrides the statistical forecast in two places. Both are visible as **bias and negative forecast value added (FVA)** of the consensus step:
+- **PNEU:** after the decline, the final forecast stays locked to the budget (the pre-decline mean). The result is persistent over-forecasting, which is consistent with root cause 2.
+- **HYDR:** from about 2026-W09 on, sales adds +35% for the expected customer project, consistent with root cause 4.
+
 ## Expected quantitative findings (approximate)
 - ABC/XYZ on value (`abc_xyz.py` with `item_master.csv`), using the default cuts 80/95 and CV 0.5/1.0: **18 A items (≈81% of value)**, of which **14 AX**. There are **10 lumpy** and 3 intermittent SKUs.
 - Top value SKUs: HYD-HOSE-12, ELE-PROX-M18, BRG-6305, SEAL-OR-50, HYD-FIT-08.
