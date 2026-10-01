@@ -1,0 +1,13 @@
+# Eval run output (claude plugin eval)
+**/evals/results/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
