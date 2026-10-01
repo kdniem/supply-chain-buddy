@@ -1,0 +1,23 @@
+{
+  "name": "supply-chain-buddy",
+  "displayName": "Supply Chain Buddy",
+  "version": "0.1.0",
+  "description": "An AI advisor and sparring partner for supply chain roles: frames the problem, asks for the data it needs, applies established methods, shows its math and cites its sources.",
+  "author": {
+    "name": "Davin",
+    "url": "https://github.com/kdniem"
+  },
+  "homepage": "https://github.com/kdniem/supply-chain-buddy",
+  "repository": "https://github.com/kdniem/supply-chain-buddy",
+  "license": "MIT",
+  "keywords": [
+    "supply-chain",
+    "inventory",
+    "demand-planning",
+    "s&op",
+    "procurement",
+    "sourcing",
+    "operations",
+    "advisor"
+  ]
+}

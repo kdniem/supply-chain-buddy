@@ -1,0 +1,15 @@
+{
+  "name": "supply-chain-buddy",
+  "description": "Supply Chain Buddy: an AI advisor and sparring partner for supply chain professionals",
+  "owner": {
+    "name": "Davin",
+    "url": "https://github.com/kdniem"
+  },
+  "plugins": [
+    {
+      "name": "supply-chain-buddy",
+      "source": "./plugins/supply-chain-buddy",
+      "description": "Advisor-grade supply chain skills (diagnostics, inventory, demand planning, S&OP, sourcing) behind one orchestrating buddy that asks for your data and shows its work"
+    }
+  ]
+}

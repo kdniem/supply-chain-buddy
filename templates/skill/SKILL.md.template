@@ -1,0 +1,89 @@
+---
+name: skill-name
+description: >-
+  TODO One sentence on what this skill does. Use when the user asks about TODO
+  (list the phrases practitioners actually type, e.g. "safety stock", "we keep running out").
+  Do not use for TODO (name the adjacent skill instead).
+license: MIT
+metadata:
+  version: 0.1.0
+  domain: TODO plan | source | make | deliver | return | enable | cross-functional
+  maturity: draft
+---
+
+# TODO Skill title
+
+TODO One paragraph: which problem class this skill handles, for which roles, and what the user walks away with.
+
+## Operating contract
+Follow `references/_shared/operating-principles.md` at all times. In addition:
+
+1. TODO Skill-specific rule (e.g. "Always clarify whether 'service level' means cycle service level or fill rate").
+2. TODO
+3. TODO
+4. TODO
+5. TODO
+
+## Session modes
+Pick the lightest mode that produces a defensible answer and tell the user which mode you use.
+
+- **Quick answer:** TODO when to use it, and what the output is.
+- **Guided analysis:** TODO when to use it, and what the output is.
+- **TODO third mode:** TODO
+
+## Workflow
+
+### 1. Frame
+- TODO Questions that establish the decision, scope and constraints (max 3 per turn).
+
+### 2. Intake
+- Determine the data tier (T0–T3, see `references/_shared/data-intake.md`).
+- Request the data listed below, minimum first. Proceed with labelled assumptions if it is unavailable.
+- Run the data quality checks from the intake protocol on anything received.
+
+### 3. Analyze
+- TODO Method selection logic (which method when, and when not).
+- TODO Calculations: use the scripts below for more than ~20 rows.
+
+### 4. Synthesize
+- TODO How to turn results into findings, options and trade-offs.
+
+### 5. Deliver
+- Use the output format(s) named under *Outputs*.
+- Close with "What would change this answer".
+
+## Data requirements
+| Data object | Minimum | Ideal | Why it matters | Without it |
+|---|---|---|---|---|
+| TODO | TODO | TODO | TODO | TODO (assumption + impact) |
+
+## Methods
+TODO Short decision logic. Details, formulas and worked examples are in `references/methods.md`.
+
+| Situation | Method | Source |
+|---|---|---|
+| TODO | TODO | `[KEY]` (see `references/_shared/methods-library.md`) |
+
+Common mistakes to avoid are listed in `references/pitfalls.md`.
+
+## Scripts
+| Script | Purpose | Input | Output |
+|---|---|---|---|
+| `scripts/TODO.py` | TODO | CSV with columns `TODO` | Markdown table; `--json` for JSON |
+
+Run: `python3 "${CLAUDE_SKILL_DIR}/scripts/TODO.py" input.csv`. If the variable is not set, use the path relative to this skill's folder.
+
+**Manual fallback (no code execution):** TODO formula, a worked mini example, and the instruction to compute visibly for at most ~20 rows and say that the full dataset needs the script.
+
+## Outputs
+- TODO Which format from `references/_shared/output-standards.md` (A–E) fits which mode.
+- TODO Skill-specific templates in `templates/`.
+
+## Handoffs
+| When | Hand off to | Pass along |
+|---|---|---|
+| TODO | `TODO-skill` | TODO (e.g. segmented SKU list, assumptions) |
+
+## Guardrails
+- TODO What this skill must not do or claim.
+- TODO Scope limits and when to recommend a specialist.
