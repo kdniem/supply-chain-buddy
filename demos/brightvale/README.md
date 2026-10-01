@@ -16,7 +16,9 @@
 | File | Grain | Columns |
 |---|---|---|
 | `demand_history.csv` | SKU × ISO week, 2025-W41 … 2026-W40 | `sku_id, period, demand_qty`. **Customer demand including unfilled demand**, not just shipments |
-| `forecast_history.csv` | SKU × week | `sku_id, period, forecast_qty, forecast_lag_weeks` (forecast made 4 weeks ahead) |
+| `forecast_history.csv` | SKU × week | `sku_id, period, stat_forecast_qty, forecast_qty, forecast_lag_weeks`. Statistical vs. final (consensus) forecast, both made 4 weeks ahead |
+| `order_fulfillment.csv` | SKU × week | `sku_id, period, demand_qty, shipped_qty` (shipped from stock; the rest was lost) |
+| `inventory_snapshots.csv` | SKU × week | `sku_id, period, on_hand_qty, on_order_qty` at the end of each week |
 | `item_master.csv` | SKU | `sku_id, description, category, supplier_id, unit_cost` |
 | `replenishment_params.csv` | SKU, current ERP settings at end of 2026-W40 | `sku_id, lead_time_days, order_qty, safety_stock_qty, reorder_point_qty, on_hand_qty, open_po_qty` |
 | `supplier_receipts.csv` | Purchase order | `po_id, supplier_id, sku_id, order_date, promised_date, received_date, qty` (`received_date` empty = still open) |
@@ -27,7 +29,8 @@ Replenishment logic in the simulation: continuous review (s, Q). An order of Q i
 ## How to use it
 - **Flagship demo:** give the prompt above plus the files to Supply Chain Buddy.
 - **Inventory policy:** `inventory-policy` scripts on `demand_history.csv` + `item_master.csv` (ABC/XYZ), then safety stocks with lead times from `supplier_receipts.csv`.
-- **Forecasting:** `forecast_history.csv` vs. `demand_history.csv` (bias, wMAPE, FVA vs. naive).
+- **Forecasting:** `demand-planning-review` scripts on `forecast_history.csv` vs. `demand_history.csv` (bias, wMAPE, FVA of the consensus step vs. the statistical forecast and vs. naive).
+- **Diagnostics:** `sc-diagnostic` KPI bridges on `order_fulfillment.csv` (fill rate by supplier or category) and `inventory_snapshots.csv` × `item_master.csv` (inventory value by category).
 - **Facilitators:** the root causes are documented in [ANSWER_KEY.md](ANSWER_KEY.md). Don't show it to the model.
 
 Regenerate with `python3 generate.py` (same seed, same files).
