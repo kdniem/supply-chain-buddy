@@ -2,7 +2,7 @@
 
 **An AI advisor and sparring partner for supply chain professionals.**
 
-> 🚧 Work in progress: three skills are available (`sc-diagnostic`, `inventory-policy`, `demand-planning-review`). The orchestrator and further skills follow. See the [roadmap](docs/roadmap.md).
+> 🚧 Work in progress: the orchestrator `sc-buddy` and three specialist skills are available. `s-and-op-design` and `sourcing-strategy` follow. See the [roadmap](docs/roadmap.md).
 
 Supply Chain Buddy turns Claude into a supply chain advisor. It does not answer from generic web knowledge. It works the way an experienced planner or consultant would:
 
@@ -18,8 +18,8 @@ Planners, buyers, analysts, supply chain managers and leaders, as well as studen
 ## Skills
 | Skill | What it helps with | Status |
 |---|---|---|
+| `sc-buddy` | Entry point. Frames your decision, keeps a case card, routes to the right specialist skill(s) in the right order and integrates their results | ✅ beta |
 | `inventory-policy` | ABC/XYZ segmentation, service level targets, safety stock, reorder points, stock health | ✅ beta |
-| `sc-buddy` | Entry point. Clarifies your question and routes it to the right specialist skill(s) | 🔜 |
 | `sc-diagnostic` | KPI trees, hypothesis-driven root-cause analysis, KPI bridges (rate vs. mix), SCOR-based health checks | ✅ beta |
 | `demand-planning-review` | Forecast accuracy and bias, forecast value added of overrides, method backtests incl. intermittent demand | ✅ beta |
 | `s-and-op-design` | S&OP / IBP process design, maturity assessment, meeting cadence | 🔜 |
@@ -30,7 +30,7 @@ Planners, buyers, analysts, supply chain managers and leaders, as well as studen
 claude plugin marketplace add kdniem/supply-chain-buddy
 claude plugin install supply-chain-buddy@supply-chain-buddy
 ```
-Then just ask, for example: *"Our fill rate dropped from 96% to 89% while inventory went up 15%. What's going on?"*
+Then just ask, for example: *"Hey Supply Chain Buddy, our fill rate dropped from 96% to 88% while inventory went up 15%. What's going on?"*
 
 Every skill folder is self-contained. You can also copy a single skill from `plugins/supply-chain-buddy/skills/` into your own skills directory.
 

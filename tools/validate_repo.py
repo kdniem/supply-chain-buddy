@@ -10,6 +10,7 @@ Checks:
   - eval cases: prompt.md or case.yaml, at least one grader; >= 3 cases per skill
     (warning while a skill is `maturity: draft`, error otherwise)
   - skill scripts have a matching unit test file (warning)
+  - every installed skill is listed in the sc-buddy orchestrator
 
 Usage:
     python3 tools/validate_repo.py
@@ -164,6 +165,17 @@ def check_evals(r: Report, maturities: dict) -> None:
                 (r.warn if maturity == "draft" else r.error)(msg)
 
 
+def check_routing(r: Report) -> None:
+    """Every installed skill must appear in the sc-buddy orchestrator (routing table / coverage)."""
+    buddy = next((d for d in skill_dirs() if d.name == "sc-buddy"), None)
+    if buddy is None:
+        return
+    text = (buddy / "SKILL.md").read_text(encoding="utf-8")
+    for skill in skill_dirs():
+        if skill.name != "sc-buddy" and f"`{skill.name}`" not in text:
+            r.error(f"skill '{skill.name}' is not listed in sc-buddy/SKILL.md (routing table / coverage)")
+
+
 def check_shared(r: Report, keys: set) -> None:
     for path in sorted(SHARED_DIR.glob("*.md")):
         for key in set(CITATION_RE.findall(path.read_text(encoding="utf-8"))):
@@ -184,6 +196,7 @@ def main() -> int:
     for skill in skill_dirs():
         maturities[skill.name] = check_skill(skill, r, keys)
     check_evals(r, maturities)
+    check_routing(r)
 
     for w in r.warnings:
         print(f"WARN  {w}")

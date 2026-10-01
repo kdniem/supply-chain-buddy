@@ -4,13 +4,13 @@
 |---|---|---|
 | 0 Discovery | Goals, audience, scope, architecture direction | ✅ Done |
 | 1 Foundation | Repo skeleton, marketplace/plugin manifests, shared layer (principles, data intake, output standards, KPI glossary, methods library), skill and eval templates, tooling, CI | ✅ Done |
-| 2 MVP | `sc-buddy` orchestrator + 5 domain skills, their scripts and evals, 2–3 demo scenarios | 🔄 In progress (3/6 skills: inventory-policy, demand-planning-review, sc-diagnostic) |
+| 2 MVP | `sc-buddy` orchestrator + 5 domain skills, their scripts and evals, 2–3 demo scenarios | 🔄 In progress (4/6: sc-buddy, inventory-policy, demand-planning-review, sc-diagnostic) |
 | 3 Showcase | Demo walkthroughs, eval results (with vs. without plugin), polished README, launch material | ⏳ |
 | 4 Expansion | Additional skills (see below), community feedback | ⏳ |
 | 5 Portability | Adapters for Codex and Microsoft 365 Copilot | ⏳ |
 
 ## MVP skills (Phase 2)
-1. `sc-buddy`: orchestrator and routing
+1. `sc-buddy`: orchestrator and routing ✅
 2. `sc-diagnostic`: KPI tree, root-cause analysis, SCOR-based health check ✅
 3. `inventory-policy`: ABC/XYZ, safety stock, reorder point, service level ✅
 4. `demand-planning-review`: method selection, accuracy, bias, FVA ✅
